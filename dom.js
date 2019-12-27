@@ -14,7 +14,7 @@ let data = {
         grade: "S"
         }]
     }
-
+//code to append the data.
 for (let key in data)
 {
      if (key=='marks')
@@ -57,17 +57,3 @@ for (let key in data)
         document.body.appendChild(ele);
     }
 }
-
-// //adding to html file 
-// let table = document.createElement('table');
-
-// let span1 = document.createElement('span');
-// span1.id = "name";
-// span1.innerText = data.name;
-
-//  let span2 = document.createElement('span');
-// span2.id = "class";
-// span2.innerText = data.class;
-
-// document.body.append(span1);
-// span.before(document.prepend(span2));
