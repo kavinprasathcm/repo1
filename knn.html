@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Nearest Neighbour</title>
+</head>
+
+<body>
+    <p>Enter the coordinates <br><br>
+        X-value : <input type="number" id="xVal"><br><br>
+        Y-value : <input type="number" id="yVal"><br><br>
+        K-value : <input type="number" id="kVal">
+    </p>
+    <button type="submit" onclick=calculateDistance()>FindDistance</button>
+    <div id="result"></div>
+    <script>
+        let coordinates = [{ x: 2, y: 3 },
+        { x: 1, y: 2 },
+        { x: 3, y: 4 },
+        { x: 4, y: 5 }];
+        
+        //This function is taken when the button is pressed.
+        function calculateDistance() {
+            let x1Val = document.getElementById("xVal").value;
+            let y1Val = document.getElementById("yVal").value;
+            let kVal = document.getElementById("kVal").value;
+            let div = document.getElementById("result");
+            let distanceArray;
+
+            //Finds the distance between the given point and the coordinates and gives the result in an array.
+            function findDistance(element) {
+                let distance = Math.pow((element.x - x1Val), 2) + Math.pow((element.y - y1Val), 2);
+                return Math.sqrt(distance);
+            }
+            distanceArray = coordinates.map(findDistance);
+            console.log(distanceArray);
+            //Find the index of the data in given data and appends to the div element.
+            function findCoords(arr) {
+                let minIdx, itr=0, len = arr.length;
+                for (let i = 0; itr < kVal; itr++) {
+                    minIdx = i;
+                    for (var j = i + 1; j < len; j++) {
+                        if (arr[j] < arr[minIdx] && arr[j] >= 0) {
+                            minIdx = j;
+                        }
+                    }
+                    arr[minIdx] = -1;
+                    let p = document.createElement('p');
+                    p.innerHTML = coordinates[minIdx].x+','+coordinates[minIdx].y;
+                    div.append(p);
+                }
+            }
+            findCoords(distanceArray);
+        }       
+    </script>
+</body>
+
+</html>
